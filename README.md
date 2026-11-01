@@ -1,5 +1,6 @@
 # Does AI Alignment Shape Economic Risk-Taking? Evidence from a Business Ecosystem Simulation
 
+Code, data and statistical results for the article by **Ruxandra Stanomir** and **Irina Badiu** (Bucharest University of Economic Studies).
 
 The study asks whether the safety alignment of large language models (LLMs) costs deploying firms money (an *alignment tax*) or protects them when regulation tightens. Four LLMs with different ex ante alignment profiles act as autonomous, profit-maximizing decision-makers of data-infrastructure firms across four consecutive regulatory regimes. Their choices are compared with an analytical expected-value benchmark.
 
@@ -80,10 +81,11 @@ Three further analyses use the recorded decisions without new model calls:
 
 ```
 ai_agents_regulatory_simulation.py   simulation, experiment runner and statistical analysis
-results/
-  Simulation_Results.xlsx            all statistics; sheet 00_Guide explains every sheet
-  all_decisions.csv                  every decision of every run (long format)
-  checkpoints/<SCENARIO>/            one CSV and one raw-response JSONL file per run and firm
+Simulation_Results.xlsx              all statistics; sheet 00_Guide explains every sheet
+all_decisions.csv                    every decision of every run (long format)
+BASELINE/, PENALTY_HIGH/, AUDIT_HIGH/, TEMP_0/, HORIZON_LONG/
+                                     one CSV and one raw-response JSONL file per run and firm
+                                     (runNN_F#.csv, runNN_F#.raw.jsonl; firms as in the table above)
 ```
 
 `Simulation_Results.xlsx` covers the following:
@@ -112,11 +114,13 @@ Requirements: Python 3 and
 pip install openai pandas numpy scipy openpyxl
 ```
 
-Recompute all statistics from the saved decisions (no API key needed):
+Recompute all statistics from the saved decisions (no API key needed). The script reads the run files from `results/checkpoints/<SCENARIO>/`, so first create the folder `results/checkpoints/` next to the script and move the five scenario folders into it. Then run:
 
 ```bash
 python ai_agents_regulatory_simulation.py analyze
 ```
+
+This writes a new `Simulation_Results.xlsx` and `all_decisions.csv` to `results/`.
 
 Free end-to-end test with rule-based mock agents (no API calls):
 
@@ -136,3 +140,10 @@ python ai_agents_regulatory_simulation.py run --profile extended --budget 80
 
 `pilot` makes about 50 calls to estimate cost and duration. `run` saves every decision immediately: after an interruption, the same command resumes each chain where it stopped, and `--budget` stops cleanly at the given USD spend. Running the script without arguments opens an interactive menu. Model behavior may change with provider updates, so a new run will not reproduce the published decisions exactly. The analysis of the saved data is fully reproducible.
 
+## Citation
+
+> Stanomir, R., & Badiu, I. (2026). *Does AI alignment shape economic risk-taking? Evidence from a business ecosystem simulation*. Manuscript submitted for publication.
+
+## Contact
+
+Ruxandra Stanomir: ruxandra.stanomir@fabiz.ase.ro
