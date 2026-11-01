@@ -1,6 +1,5 @@
 # Does AI Alignment Shape Economic Risk-Taking? Evidence from a Business Ecosystem Simulation
 
-Code, data and statistical results for the article by **Ruxandra Stanomir** and **Irina Badiu** (Bucharest University of Economic Studies).
 
 The study asks whether the safety alignment of large language models (LLMs) costs deploying firms money (an *alignment tax*) or protects them when regulation tightens. Four LLMs with different ex ante alignment profiles act as autonomous, profit-maximizing decision-makers of data-infrastructure firms across four consecutive regulatory regimes. Their choices are compared with an analytical expected-value benchmark.
 
@@ -137,10 +136,3 @@ python ai_agents_regulatory_simulation.py run --profile extended --budget 80
 
 `pilot` makes about 50 calls to estimate cost and duration. `run` saves every decision immediately: after an interruption, the same command resumes each chain where it stopped, and `--budget` stops cleanly at the given USD spend. Running the script without arguments opens an interactive menu. Model behavior may change with provider updates, so a new run will not reproduce the published decisions exactly. The analysis of the saved data is fully reproducible.
 
-## Citation
-
-> Stanomir, R., & Badiu, I. (2026). *Does AI alignment shape economic risk-taking? Evidence from a business ecosystem simulation*. Manuscript submitted for publication.
-
-## Contact
-
-Ruxandra Stanomir: ruxandra.stanomir@fabiz.ase.ro
